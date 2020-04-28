@@ -1,0 +1,52 @@
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-content">
+                    <!-- <form #userForm ="ngForm" (ngSubmit)="addUser(userForm)"> -->
+                    <form #userForm ="ngForm">
+                        <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]= "userService.selectedUser._id">
+                        <div class="row">
+                            <div class="input-field">
+                                <input type="text" name="email" #email="ngModel" [(ngModel)]="userService.selectedUser.email" placeholder="Ingresa tu email" >
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field">
+                                <input type="password" name="password" #password="ngModel" [(ngModel)]="userService.selectedUser.password" placeholder="Ingresa tu contraseña" >
+                            </div>
+                        </div>
+                        <div class="card-action">
+                            <div class="input-field">
+                                <button class="btn right" (click)="addUser(userForm)">Save User</button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col s7">
+            <table>
+                <thead>
+                    <th>Uasername</th>
+                    <th>Actions</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let user of userService.users">
+                        <td>{{user.email}}</td>
+                        <td>
+                            <a (click)="editUser(user)" >
+                                <i class="material-icons">edit</i>
+                            </a>
+                            <a (click)="deleteUser(user._id)" >
+                                <i class="material-icons">delete</i>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
